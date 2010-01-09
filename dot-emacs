@@ -1,1 +1,74 @@
-../.emacs
+;; My .emacs
+;; Björn Edström <be@bjrn.se>
+
+(setq load-path (cons "~/emacs" load-path))
+
+
+;; Configuration of how Emacs should behave.
+;; -----------------------------------------
+
+;; Setup Org Mode, the best thing since sliced bread.
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(setq org-log-done t)
+
+;; Use parts of CUA mode. We want the region/mark behaviour, but not
+;; the new bindings for \C-x etc.
+(cua-mode t)
+(setq cua-enable-cua-keys nil)
+
+;; Setup Python.
+(add-hook 'python-mode-hook '(lambda ()
+    (define-key python-mode-map "\C-m" 'newline-and-indent)))
+
+;; Setup C/C++.
+(add-hook 'c-mode-common-hook '(lambda ()
+    (local-set-key (kbd "RET") 'newline-and-indent)))
+(setq c-default-style "bsd")
+
+;; When in X, paste at cursor instead of mouse pointer.
+(setq mouse-yank-at-point t)
+
+
+;; Configuration of how data should be presented.
+;; ----------------------------------------------
+
+;; Generic display options.
+(global-font-lock-mode 1)
+(show-paren-mode t)
+
+;; Show line and column numbers.
+(require 'linum)
+(global-linum-mode 1)
+
+(line-number-mode t)
+(column-number-mode t)
+
+;; Show trailing white-spaces.
+(custom-set-variables '(show-trailing-whitespace t))
+
+;; When keeping several files of the same name open (from different
+;; directories), display enough information in the buffer name for a
+;; human to distinguish them.
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(setq uniquify-after-kill-buffer-p t)
+
+;; More useful title name please, containing buffer name.
+(setq frame-title-format "%b - emacs")
+
+;; Switch to sane non-ambiguous date format.
+(setq european-calendar-style t)
+
+;; Setup the GUI. Use a nice font, disable the toolbar, disable
+;; the splash screen and use a different color theme.
+(set-default-font "Liberation Mono-10")
+(when (functionp 'tool-bar-mode) (tool-bar-mode 0))
+(setq inhibit-splash-screen t)
+
+; TODO: Make this more portable.
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/emacs-goodies-el/color-theme.el")
+(require 'color-theme)
+   (setq color-theme-is-global t)
+   (color-theme-vim-colors)
+
