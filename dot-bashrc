@@ -94,5 +94,5 @@ fi
 
 # PATH
 
-export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$HOME/.cabal/bin:/usr/local/bin:$PATH"
 
