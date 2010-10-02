@@ -29,6 +29,8 @@
 (add-hook 'c-mode-common-hook '(lambda ()
     (local-set-key (kbd "RET") 'newline-and-indent)))
 (setq c-default-style "bsd")
+(setq c-offsets-alist '(
+			(comment-intro . 0)))
 
 ;; When in X, paste at cursor instead of mouse pointer.
 (setq mouse-yank-at-point t)
