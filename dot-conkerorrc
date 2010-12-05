@@ -101,7 +101,7 @@ interactive("readability_arc90",
                 var document = I.window.buffers.current.document;
 
                 var readConvertLinksToFootnotes = false;
-                var readStyle = 'style-newspaper';
+                var readStyle = 'style-novel';
                 var readSize = 'size-medium';
                 var readMargin = 'margin-wide';
 
