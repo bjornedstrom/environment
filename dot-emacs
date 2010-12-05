@@ -68,7 +68,9 @@
 
 ;; Setup the GUI. Use a nice font, disable the toolbar, disable
 ;; the splash screen and use a different color theme.
-(set-default-font "Liberation Mono-10")
+(setq default-frame-alist '((font-backend . "xft")
+                            (font . "Liberation Mono-10")))
+
 (when (functionp 'tool-bar-mode) (tool-bar-mode 0))
 (setq inhibit-splash-screen t)
 
