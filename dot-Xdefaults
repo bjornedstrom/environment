@@ -1,0 +1,7 @@
+URxvt*font: xft:Monospace:pixelsize=12:antialias=true
+URxvt*boldFont: xft:Monospace:bold:pixelsize=12:antialias=true
+
+Emacs.font: Liberation Mono-10
+Emacs.fontBackend: xft
+Emacs.toolBar: -1
+
