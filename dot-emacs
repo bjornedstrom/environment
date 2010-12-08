@@ -73,12 +73,13 @@
 ;; Switch to sane non-ambiguous date format.
 (setq european-calendar-style t)
 
-;; Setup the GUI. Use a nice font, disable the toolbar, disable
-;; the splash screen and use a different color theme.
-;(setq default-frame-alist '((font-backend . "xft")
-;                            (font . "Liberation Mono-10")))
+;; XXX: Set up a font and disable the toolbar.  This information is in
+;; Xdefaults too, however it's needed for emacs --daemon.
+(setq default-frame-alist '((font-backend . "xft")
+                            (font . "Liberation Mono-10")))
+(when (functionp 'tool-bar-mode) (tool-bar-mode 0))
 
-;(when (functionp 'tool-bar-mode) (tool-bar-mode 0))
+;; Remove the splash screen on startup.
 (setq inhibit-splash-screen t)
 
 ; TODO: Make this more portable.
