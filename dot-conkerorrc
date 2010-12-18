@@ -9,6 +9,23 @@ homepage = 'http://www.google.com/';
 editor_shell_command = "emacs";
 
 
+// Make sure 'q' doesn't accidentally shut down the program.
+can_kill_last_buffer = false;
+
+
+// Some new keybindings
+undefine_key(content_buffer_normal_keymap, "b");
+undefine_key(content_buffer_normal_keymap, "B");
+
+define_key(content_buffer_normal_keymap, "b", "back");
+define_key(content_buffer_normal_keymap, "B", "bookmark");
+
+
+// testing...
+download_buffer_automatic_open_target = [OPEN_NEW_BUFFER_BACKGROUND, OPEN_NEW_WINDOW];
+require("new-tabs.js");
+
+
 // webjumps
 define_webjump("imdb", "http://imdb.com/find?q=%s");
 define_webjump("gmail", "http://gmail.com/");
