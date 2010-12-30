@@ -51,6 +51,29 @@
 (setq mouse-yank-at-point t)
 
 
+;; dns-mode advice
+;; let us save dns zone files even if soa is missing.
+;; auto-activated if we're in dns-mode.
+(defadvice dns-mode-soa-maybe-increment-serial (before maybe-set-increment)
+  "if there is a dns soa post, increment it. Otherwise, just save"
+  (save-excursion
+    (beginning-of-buffer)
+    (if (and (search-forward-regexp "IN[ ''\t'']+SOA" nil t)
+             (not (search-forward-regexp "@SERIAL@" nil t)))
+        (progn
+          (setq dns-mode-soa-auto-increment-serial t)
+          (message "dns-mode-soa-auto-increment-serial t")
+          )
+      (progn
+        (setq dns-mode-soa-auto-increment-serial nil)
+        (message "dns-mode-soa-auto-increment-serial nil")
+        )
+      )
+    )
+  )
+(ad-activate 'dns-mode-soa-maybe-increment-serial)
+
+
 ;; Configuration of how data should be presented.
 ;; ----------------------------------------------
 
