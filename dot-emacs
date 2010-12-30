@@ -96,3 +96,17 @@
    (setq color-theme-is-global t)
    (color-theme-vim-colors)
 
+; When using flymake-mode in Python source code, enable checking for
+; style guide violations and code errors. pycheckers script uses
+; pep8.py and pyflakes.
+(when (load "flymake" t)
+  (defun flymake-pycheckers-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "~/environment/python/pycheckers" (list local-file))))
+
+      (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pycheckers-init)))
