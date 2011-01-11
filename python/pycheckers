@@ -149,7 +149,7 @@ class Pep8Runner(LintRunner):
 
     """
 
-    command = 'pep8'
+    command = 'pep8.py'
 
     output_matcher = re.compile(
         r'(?P<filename>[^:]+):'
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     # transparently add a virtualenv to the path when launched with a venv'd
     # python.
     os.environ['PATH'] = \
-      path.dirname(sys.executable) + ':' + os.environ['PATH']
+      path.dirname(sys.argv[0]) + ':' + os.environ['PATH']
 
     if len(sys.argv) < 2:
         croak("Usage: %s [file]" % sys.argv[0])
