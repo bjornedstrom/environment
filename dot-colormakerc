@@ -1,0 +1,10 @@
+$col_default =      $col_black;
+$col_gcc =          $col_black;
+$col_make =         $col_black . $col_brighten;
+$col_filename =     $col_blue;
+$col_linenum =      $col_blue;
+$col_trace =        $col_yellow;
+$col_warning =      $col_green;
+$tag_error =        "";
+$col_error =        $tag_error . $col_red . $col_brighten;
+$error_highlight =  $col_brighten;
