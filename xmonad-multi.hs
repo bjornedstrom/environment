@@ -2,9 +2,11 @@ import XMonad
 import XMonad.Config.Gnome
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
+import XMonad.Hooks.SetWMName
 
 main = xmonad $ gnomeConfig
        { modMask = mod4Mask
+       , startupHook = setWMName "LG3D"
        , terminal = "gnome-terminal"
        , workspaces = myWorkspaces
        } `additionalKeysP` myKeys
