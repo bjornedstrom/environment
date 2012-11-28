@@ -159,3 +159,46 @@ interactive("readability_arc90",
             });
 
 define_key(content_buffer_normal_keymap, "z", "readability_arc90");
+
+
+interactive("list-bookmarks",
+    "List all bookmarks",
+    function (I) {
+        var data = "", error = "";
+        var result = yield shell_command(
+            "/home/bjorn/src/conkeror-bookmarks/conkeror-bookmarks.py --html",
+            $fds = [{ output: async_binary_string_writer("") },
+                    { input: async_binary_reader(function (s) data+=s||"") },
+                    { input: async_binary_reader(function (s) error+=s||"") }]);
+        if (result != 0 || error != "")
+            throw new interactive_error("status "+result+", "+error);
+        var uri = "data:text/html;charset=utf-8;base64,"+btoa(data);
+        browser_object_follow(I.buffer, OPEN_NEW_BUFFER, load_spec({ uri: uri }));
+    });
+
+
+
+
+require("cookie.js"); // hopefully this would go in modules/cookie.js so this would not be needed
+
+function for_each_host_cookie(host, fn) {
+    var cookies = cookie_manager.getCookiesFromHost(host);
+    while (cookies.hasMoreElements()) {
+        var cookie = cookies.getNext().QueryInterface(Components.interfaces.nsICookie2);
+        fn(cookie);
+    }
+}
+
+function clear_host_cookies(host) {
+    for_each_host_cookie(host,
+                         function (cookie) {
+                             cookie_manager.remove(cookie.host, cookie.name, cookie.path, false);
+                         });
+}
+
+interactive("clear-site-cookies", "Delete all cookies for the current site",
+            function (I) {
+                var host = I.buffer.current_uri.host;
+                clear_host_cookies(host);
+                I.minibuffer.message("Cookies cleared for " + host);
+            });
