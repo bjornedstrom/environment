@@ -1,0 +1,15 @@
+[user]
+	name = Björn Edström
+	email = be@bjrn.se
+[core]
+        editor = emacs
+[ui]
+        color = true
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+[push]
+        default = tracking
+[alias]
+        plog = !"GIT_PAGER='less -n +/^commit\\ \\[0-9a-f\\]+' git log --color -p --stat"
