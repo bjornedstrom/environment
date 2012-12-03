@@ -26,6 +26,12 @@ download_buffer_automatic_open_target = [OPEN_NEW_BUFFER_BACKGROUND, OPEN_NEW_WI
 require("new-tabs.js");
 
 
+// session handling
+require("session.js");
+define_key(content_buffer_normal_keymap, "C-x F", "session-load-window-current");
+define_key(content_buffer_normal_keymap, "C-x S", "session-save");
+
+
 // webjumps
 define_webjump("imdb", "http://imdb.com/find?q=%s");
 define_webjump("gmail", "http://gmail.com/");
