@@ -1,3 +1,7 @@
 My environment.
 
 Björn Edström <be@bjrn.se>
+
+## Emacs:
+
+    update-alternatives --install /usr/bin/emacs emacs $PWD/emacs-launcher 1

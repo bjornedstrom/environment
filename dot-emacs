@@ -117,8 +117,9 @@
 ; TODO: Make this more portable.
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/emacs-goodies-el/color-theme.el")
 (require 'color-theme)
-   (setq color-theme-is-global t)
-   (color-theme-vim-colors)
+(color-theme-initialize)
+(setq color-theme-is-global t)
+(color-theme-vim-colors)
 
 ; When using flymake-mode in Python source code, enable checking for
 ; style guide violations and code errors. pycheckers script uses
