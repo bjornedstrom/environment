@@ -4,4 +4,7 @@ Björn Edström <be@bjrn.se>
 
 ## Emacs:
 
+    Workaround for Ubuntu 16.04
+
+    ln -s environment/.XCompose .XCompose
     update-alternatives --install /usr/bin/emacs emacs $PWD/emacs-launcher 1

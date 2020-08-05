@@ -1,0 +1,5 @@
+include "%L"
+
+# Combinatorial
+<dead_tilde> <dead_iota> <Greek_omega> 	: "ῷ"   U1FF7 # GREEK SMALL LETTER OMEGA WITH PERISPOMENI AND YPOGEGRAMMENI
+<dead_tilde> <dead_iota> <Greek_eta> 	: "ῇ"   U1FC7 # GREEK SMALL LETTER ETA WITH PERISPOMENI AND YPOGEGRAMMENI
